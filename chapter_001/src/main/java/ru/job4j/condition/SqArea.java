@@ -5,7 +5,7 @@ public class SqArea {
         // P = 2*(L+h) = 2*(h*k+h)
         // h = P/(2*(k+1)), L = k * (P/(2*(k+1)))
         // S = L * h = (P/(2*(k+1)))^2 * k
-        return Math.pow((p / 2.0 /(k + 1.0)), 2) * k;
+        return Math.pow((p / 2.0 / (k + 1.0)), 2) * k;
     }
 
     public static void main(String[] args) {
