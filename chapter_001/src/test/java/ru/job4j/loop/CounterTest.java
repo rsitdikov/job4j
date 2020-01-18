@@ -10,7 +10,7 @@ public class CounterTest {
         int st = 1;
         int fn = 10;
         int expected = 30;
-        int sm = Counter.add (st, fn);
+        int sm = Counter.add(st, fn);
         assertThat(sm, is(expected));
     }
 }
