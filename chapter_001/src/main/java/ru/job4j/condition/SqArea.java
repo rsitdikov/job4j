@@ -7,7 +7,6 @@ public class SqArea {
         // S = L * h = (P/(2*(k+1)))^2 * k
         return Math.pow((p / 2.0 / (k + 1.0)), 2) * k;
     }
-
     public static void main(String[] args) {
         double result1 = square(4, 1);
         System.out.println(" p = 4, k = 1, s = 1, real = " + result1);

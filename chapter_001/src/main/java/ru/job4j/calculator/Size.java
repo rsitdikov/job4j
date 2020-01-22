@@ -5,11 +5,9 @@ public class Size {
         int result = left + Math.abs(right);
         return result;
     }
-
     public void info(int size) {
         System.out.println("Your size is : " + size);
     }
-
     public static void main(String[] args) {
         Size size = new Size();
         int nike = 10;
