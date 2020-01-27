@@ -6,7 +6,7 @@ public class Merge {
     public int[] merge(int[] left, int[] right) {
         int[] rsl = new int[left.length + right.length];
         int indexLeft = 0, indexRight = 0;
-        while (indexLeft < left.length &  indexRight < right.length) {
+        while (indexLeft < left.length && indexRight < right.length) {
             rsl[indexLeft + indexRight] = left[indexLeft] < right[indexRight] ? left[indexLeft++] : right[indexRight++];
         }
         while (indexRight < right.length) {
