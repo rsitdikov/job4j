@@ -6,9 +6,10 @@ import org.junit.Test;
 public class PointTest {
     @Test
     public void distance() {
-        int in1 = -6, in2 = 0, in3 = 0, in4 = 8;
-        double expected = 10.0;
-        double out = Point.distance(in1, in2, in3, in4);
+        Point first = new Point(0, 3);
+        Point second = new Point(4, 0);
+        double expected = 5.0;
+        double out = first.distance(second);
         Assert.assertEquals(expected, out, 0.1);
     }
 }
