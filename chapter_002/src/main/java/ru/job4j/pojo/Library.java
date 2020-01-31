@@ -27,7 +27,7 @@ public class Library {
         System.out.println();
         String request = "Clean Code";
         for (int index = 0; index < lib.length; index++) {
-            if (lib[index].getName() == request) {
+            if (lib[index].getName().equals(request)) {
                 System.out.println("Book title: " + lib[index].getName()
                         + ", number of pages: " + lib[index].getPages()
                         + ", library index: " + index);
