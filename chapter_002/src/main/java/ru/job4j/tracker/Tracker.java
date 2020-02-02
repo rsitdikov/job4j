@@ -69,13 +69,24 @@ public class Tracker {
         return rsl;
     }
     public boolean replace(String id, Item item) {
-        boolean rsl = true;
+        boolean rsl = false;
         int index = indexOf(id);
         if (index >= 0) {
             item.setId(this.items[index].getId());
             this.items[index] = item;
-        } else {
-            rsl = false;
+            rsl = true;
+        }
+        return rsl;
+    }
+    public boolean delete(String id) {
+        boolean rsl = false;
+        int dist = indexOf(id);
+        if (dist >= 0) {
+            int start = dist + 1;
+            int size = position - start;
+            System.arraycopy(items, start, items, dist, size);
+            items[position--] = null;
+            rsl = true;
         }
         return rsl;
     }
