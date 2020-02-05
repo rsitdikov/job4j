@@ -4,14 +4,14 @@ package ru.job4j.tracker;
 public class StartUI {
 
     public static void createItem(Input input, Tracker tracker) {
-        System.out.println("=== Create a new Item ====");
+        System.out.println("==== Create a new Item ====");
         String name = input.askStr("Enter name: ");
         Item item = new Item(name);
         tracker.add(item);
     }
 
     public static void showAllItem(Tracker tracker) {
-        System.out.println("=== Show all Items ====");
+        System.out.println("==== Show all Items ====");
         Item[] items = tracker.findAll();
         if (items.length > 0) {
             System.out.println(items.length + " item(s) found.");
@@ -25,7 +25,7 @@ public class StartUI {
     }
 
     public static void replaceItem(Input input, Tracker tracker) {
-        System.out.println("=== Update Item ====");
+        System.out.println("==== Update Item ====");
         String id = input.askStr("Enter id to replace item: ");
         String name = input.askStr("Enter a new name: ");
         Item item = new Item(name);
@@ -34,14 +34,14 @@ public class StartUI {
     }
 
     public static void deleteItem(Input input, Tracker tracker) {
-        System.out.println("=== Delete Item ====");
+        System.out.println("==== Delete Item ====");
         String id = input.askStr("Enter id to delete item: ");
         String msg = (tracker.delete(id)) ? "Item with this id deleted." : "Item with this id not found.";
         System.out.println(msg);
     }
 
     public static void findItemById(Input input, Tracker tracker) {
-        System.out.println("=== Find Item by Id ====");
+        System.out.println("==== Find Item by Id ====");
         String id = input.askStr("Enter id to search from item: ");
         Item item = tracker.findById(id);
         if (item != null) {
@@ -53,7 +53,7 @@ public class StartUI {
     }
 
     public static void findItemsByName(Input input, Tracker tracker) {
-        System.out.println("=== Find Items by name ====");
+        System.out.println("==== Find Items by name ====");
         String name = input.askStr("Enter a name to search: ");
         Item[] items = tracker.findByName(name);
         if (items.length > 0) {
