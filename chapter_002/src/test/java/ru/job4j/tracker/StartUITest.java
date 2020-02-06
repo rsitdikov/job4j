@@ -51,19 +51,22 @@ public class StartUITest {
         assertThat(action.isCall(), is(true));
     }
     @Test
-    public void whenInit() {
+    public void whenPrtMenu() {
         PrintStream stdout = System.out;
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         StubInput input = new StubInput(new String[] {"0"});
         StubAction action = new StubAction();
         new StartUI().init(input, new Tracker(), new UserAction[] {action});
+        String expect = new StringBuilder()
+                .append("Menu.")
+                .append(System.lineSeparator())
+                .append(System.lineSeparator())
+                .append("0. Stub action")
+                .append(System.lineSeparator())
+                .toString();
         assertThat(new String(out.toByteArray()),
-                    is("Menu."
-                            + System.lineSeparator()
-                            + System.lineSeparator()
-                            + "0. Stub action"
-                            + System.lineSeparator()));
+                    is(expect));
         System.setOut(stdout);
     }
 }
