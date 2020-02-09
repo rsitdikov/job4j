@@ -23,4 +23,21 @@ public class ValidateInputTest {
         );
         System.setOut(out);
     }
+    @Test
+    public void whenSelectGreaterMax() {
+        ByteArrayOutputStream mem = new ByteArrayOutputStream();
+        PrintStream out = System.out;
+        System.setOut(new PrintStream(mem));
+        int max = 5;
+        String select = Integer.toString(max + 1);
+        ValidateInput input = new ValidateInput(
+                new StubInput(new String[] {select, "0"})
+        );
+        input.askInt("Enter", max);
+        assertThat(
+                mem.toString(),
+                is(String.format("Please select key from menu.%n"))
+        );
+        System.setOut(out);
+    }
 }
