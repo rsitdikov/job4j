@@ -2,13 +2,13 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import java.util.List;
+import java.util.Random;
+
 import static org.hamcrest.Matchers.arrayWithSize;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 
 public class TrackerTest {
@@ -29,7 +29,7 @@ public class TrackerTest {
             Item item = new Item(String.valueOf(rm.nextLong()));
             tracker.add(item);
         }
-        ArrayList<Item> result = tracker.findAll();
+        List<Item> result = tracker.findAll();
         assertThat(result.toArray(), arrayWithSize(10));
     }
     @Test
@@ -42,7 +42,7 @@ public class TrackerTest {
             item = new Item("Test");
             tracker.add(item);
         }
-        ArrayList<Item> result = tracker.findByName("Test");
+        List<Item> result = tracker.findByName("Test");
         assertThat(result.toArray(), arrayWithSize(10));
     }
     @Test
