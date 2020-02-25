@@ -22,7 +22,7 @@ public class FindAllActionTest {
         FindAllAction act = new FindAllAction();
         act.execute(new StubInput(new String[] {}), tracker);
         String expect = new StringBuilder()
-                .append(tracker.findAll().length)
+                .append(tracker.findAll().size())
                 .append(" item(s) found.")
                 .append(System.lineSeparator())
                 .append(System.lineSeparator())

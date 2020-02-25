@@ -22,7 +22,7 @@ public class FindByNameActionTest {
         FindByNameAction act = new FindByNameAction();
         act.execute(new StubInput(new String[] {item.getName()}), tracker);
         String expect = new StringBuilder()
-                .append(tracker.findByName(item.getName()).length)
+                .append(tracker.findByName(item.getName()).size())
                 .append(" item(s) found with the name(s):")
                 .append(System.lineSeparator())
                 .append(item.getName())
