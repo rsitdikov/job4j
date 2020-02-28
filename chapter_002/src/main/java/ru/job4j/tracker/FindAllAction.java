@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class FindAllAction implements UserAction  {
     @Override
@@ -9,16 +10,16 @@ public class FindAllAction implements UserAction  {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Tracker tracker, Consumer<String> output) {
         List<Item> items = tracker.findAll();
         if (items.size() > 0) {
-            System.out.println(items.size() + " item(s) found.");
+            output.accept(items.size() + " item(s) found.");
             for (Item item:items) {
-                System.out.println(System.lineSeparator() + "Name: " + item.getName());
-                System.out.println("Id: " + item.getId());
+                output.accept(System.lineSeparator() + "Name: " + item.getName());
+                output.accept("Id: " + item.getId());
             }
         } else {
-            System.out.println("No items found");
+            output.accept("No items found");
         }
         return true;
     }

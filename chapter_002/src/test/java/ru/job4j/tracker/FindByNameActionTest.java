@@ -4,10 +4,9 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.StringJoiner;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class FindByNameActionTest {
 
@@ -20,7 +19,7 @@ public class FindByNameActionTest {
         Item item = new Item("fix bug");
         tracker.add(item);
         FindByNameAction act = new FindByNameAction();
-        act.execute(new StubInput(new String[] {item.getName()}), tracker);
+        act.execute(new StubInput(new String[] {item.getName()}), tracker, System.out::println);
         String expect = new StringBuilder()
                 .append(tracker.findByName(item.getName()).size())
                 .append(" item(s) found with the name(s):")

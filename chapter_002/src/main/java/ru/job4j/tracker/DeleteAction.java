@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.function.Consumer;
+
 public class DeleteAction implements UserAction {
     @Override
     public String name() {
@@ -7,10 +9,10 @@ public class DeleteAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Tracker tracker, Consumer<String> output) {
         String id = input.askStr("Enter id to delete item: ");
         String msg = (tracker.delete(id)) ? "Item with this id deleted." : "Item with this id not found.";
-        System.out.println(msg);
+        output.accept(msg);
         return true;
     }
 }

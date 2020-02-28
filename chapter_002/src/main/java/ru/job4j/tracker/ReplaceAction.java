@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.function.Consumer;
+
 public class ReplaceAction implements UserAction {
     @Override
     public String name() {
@@ -7,12 +9,12 @@ public class ReplaceAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Tracker tracker, Consumer<String> output) {
         String id = input.askStr("Enter id to replace item: ");
         String name = input.askStr("Enter a new name: ");
         Item item = new Item(name);
         String msg = (tracker.replace(id, item)) ? "The item with this ID has been updated." : "Item with this id not found.";
-        System.out.println(msg);
+        output.accept(msg);
         return true;
     }
 }

@@ -15,7 +15,7 @@ public class StartUITest {
         String[] answers = {"Fix PC"};
         Input input = new StubInput(answers);
         Tracker tracker = new Tracker();
-        new  CreateAction().execute(input, tracker);
+        new  CreateAction().execute(input, tracker, System.out::println);
         Item created = tracker.findAll().get(0);
         Item expected = new Item("Fix PC");
         assertThat(created.getName(), is(expected.getName()));
@@ -26,7 +26,7 @@ public class StartUITest {
         Item item = new Item("new item");
         tracker.add(item);
         String[] answers = {item.getId(), "replaced item"};
-        new ReplaceAction().execute(new StubInput(answers), tracker);
+        new ReplaceAction().execute(new StubInput(answers), tracker, System.out::println);
         Item replaced = tracker.findById(item.getId());
         assertThat(replaced.getName(), is("replaced item"));
     }
@@ -36,7 +36,7 @@ public class StartUITest {
         Item item = new Item("new item");
         tracker.add(item);
         String[] answers = {item.getId()};
-        new DeleteAction().execute(new StubInput(answers), tracker);
+        new DeleteAction().execute(new StubInput(answers), tracker, System.out::println);
         Item deleted = tracker.findById(answers[0]);
         assertThat(deleted, is(nullValue()));
     }
@@ -46,7 +46,7 @@ public class StartUITest {
                 new String[] {"0"}
         );
         StubAction action = new StubAction();
-        new StartUI().init(input, new Tracker(), new UserAction[] {action});
+        new StartUI(input, new Tracker(), System.out::println).init(new UserAction[] {action});
         assertThat(action.isCall(), is(true));
     }
     @Test
@@ -56,7 +56,7 @@ public class StartUITest {
         System.setOut(new PrintStream(out));
         StubInput input = new StubInput(new String[] {"0"});
         StubAction action = new StubAction();
-        new StartUI().init(input, new Tracker(), new UserAction[] {action});
+        new StartUI(input, new Tracker(), System.out::println).init(new UserAction[] {action});
         String expect = new StringBuilder()
                 .append("Menu.")
                 .append(System.lineSeparator())
