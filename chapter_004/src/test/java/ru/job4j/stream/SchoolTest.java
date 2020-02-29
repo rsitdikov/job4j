@@ -3,6 +3,7 @@ package ru.job4j.stream;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import static org.hamcrest.core.Is.is;
@@ -48,6 +49,20 @@ public class SchoolTest {
                 new Student("Savel'ev", 87)
         );
         List<Student> result = new School().collect(students, predicate);
+        assertThat(result, is(expected));
+    }
+    @Test
+    public void whenConvertListThenResultMap() {
+        Map<String, Student> expected = Map.of(
+                "Ivanov", new Student("Ivanov", 100),
+                "Petrov", new Student("Petrov", 22),
+                "Sidorov", new Student("Sidorov", 43),
+                "Sergeev", new Student("Sergeev", 54),
+                "Makarov", new Student("Makarov", 65),
+                "Vasil'ev", new Student("Vasil'ev", 36),
+                "Savel'ev", new Student("Savel'ev", 87)
+        );
+        Map<String, Student> result = new School().convertListToMap(students);
         assertThat(result, is(expected));
     }
 }
