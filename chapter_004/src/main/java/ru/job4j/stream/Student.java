@@ -2,29 +2,29 @@ package ru.job4j.stream;
 
 import java.util.Objects;
 
-public class Student {
+public class Student implements Comparable<Student> {
     private final String name;
-    private final int score;
+    private final int scope;
 
 
-    public Student(String name, int score) {
+    public Student(String name, int scope) {
         this.name = name;
-        this.score = score;
+        this.scope = scope;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getScore() {
-        return score;
+    public int getScope() {
+        return scope;
     }
     @Override
     public String toString() {
         return "Student{name='"
                 + name + "'"
-                + ", score="
-                + score + "}";
+                + ", scope="
+                + scope + "}";
     }
     @Override
     public boolean equals(Object o) {
@@ -35,11 +35,16 @@ public class Student {
             return false;
         }
         Student student = (Student) o;
-        return getScore() == student.getScore() && Objects.equals(getName(), student.getName());
+        return getScope() == student.getScope() && Objects.equals(getName(), student.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getScore());
+        return Objects.hash(getName(), getScope());
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        return o.getScope() - getScope();
     }
 }
