@@ -1,23 +1,25 @@
 package ru.job4j.collection;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FreezeStr {
     public static boolean eq(String left, String right) {
         boolean rsl = false;
         if (left.length() == right.length()) {
-            List<Character> first = new ArrayList<>();
-            List<Character> second = new ArrayList<>();
+            Map<Character, Integer> first = new HashMap<>();
+            Map<Character, Integer> second = new HashMap<>();
             for (int index = 0; index < left.length(); index++) {
-                first.add(left.toCharArray()[index]);
-                second.add(right.toCharArray()[index]);
+                incMapValue(first, left.toCharArray()[index]);
+                incMapValue(second, right.toCharArray()[index]);
             }
-            first.sort(Comparator.naturalOrder());
-            second.sort(Comparator.naturalOrder());
             rsl = first.equals(second);
+
         }
         return rsl;
+    }
+    public static void incMapValue(Map map, char key) {
+        int value = (int) map.getOrDefault(key, 0);
+        map.put(key, ++value);
     }
 }
