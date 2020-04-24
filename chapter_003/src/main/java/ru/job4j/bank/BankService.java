@@ -1,9 +1,6 @@
 package ru.job4j.bank;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BankService {
     private Map<User, List<Account>> users = new HashMap<>();
@@ -13,10 +10,9 @@ public class BankService {
     }
 
     public void addAccount(String passport, Account account) {
-
-        User user = findByPassport(passport);
-        if (user != null && users.get(user).indexOf(account) == -1) {
-            users.get(user).add(account);
+        Optional<User> user = Optional.ofNullable(findByPassport(passport));
+        if (user.isPresent() && users.get(user.get()).indexOf(account) == -1) {
+            users.get(user.get()).add(account);
         }
     }
 
@@ -42,12 +38,12 @@ public class BankService {
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
         boolean rsl = false;
-        Account src = findByRequisite(srcPassport, srcRequisite);
-        Account dest = findByRequisite(destPassport, destRequisite);
-        if (src != null && dest != null && src.getBalance() >= amount) {
+        Optional<Account> src = Optional.ofNullable(findByRequisite(srcPassport, srcRequisite));
+        Optional<Account> dest = Optional.ofNullable(findByRequisite(destPassport, destRequisite));
+        if (src.isPresent() && dest.isPresent() && src.get().getBalance() >= amount) {
             rsl = true;
-            src.setBalance(src.getBalance() - amount);
-            dest.setBalance(dest.getBalance() + amount);
+            src.get().setBalance(src.get().getBalance() - amount);
+            dest.get().setBalance(dest.get().getBalance() + amount);
         }
         return rsl;
     }
