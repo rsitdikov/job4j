@@ -24,13 +24,12 @@ public class BankService {
     }
 
     public Optional<Account> findByRequisite(String passport, String requisite) {
-        return users.entrySet()
-                .stream()
-                .filter(m -> m.getKey().getPassport().equals(passport))
-                .map(Map.Entry::getValue)
-                .flatMap(List :: stream)
-                .filter(a -> a.getRequisite().equals(requisite))
-                .findFirst();
+        return findByPassport(passport)
+                .flatMap(u -> users.get(u)
+                        .stream()
+                        .filter(a -> a.getRequisite().equals(requisite))
+                        .findFirst()
+                );
     }
 
     public boolean transferMoney(String srcPassport, String srcRequisite,
