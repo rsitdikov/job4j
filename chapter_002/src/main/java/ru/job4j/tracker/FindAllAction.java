@@ -10,7 +10,7 @@ public class FindAllAction implements UserAction  {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker, Consumer<String> output) {
+    public boolean execute(Input input, Store tracker, Consumer<String> output) {
         List<Item> items = tracker.findAll();
         if (items.size() > 0) {
             output.accept(items.size() + " item(s) found.");

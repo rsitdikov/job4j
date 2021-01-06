@@ -14,7 +14,7 @@ public class StartUITest {
     public void whenAddItem() {
         String[] answers = {"Fix PC"};
         Input input = new StubInput(answers);
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         new  CreateAction().execute(input, tracker, System.out::println);
         Item created = tracker.findAll().get(0);
         Item expected = new Item("Fix PC");
@@ -22,7 +22,7 @@ public class StartUITest {
     }
     @Test
     public void whenReplaceItem() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("new item");
         tracker.add(item);
         String[] answers = {item.getId(), "replaced item"};
@@ -32,7 +32,7 @@ public class StartUITest {
     }
     @Test
     public void whenDeleteItem() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("new item");
         tracker.add(item);
         String[] answers = {item.getId()};
@@ -46,7 +46,7 @@ public class StartUITest {
                 new String[] {"0"}
         );
         StubAction action = new StubAction();
-        new StartUI(input, new Tracker(), System.out::println).init(new UserAction[] {action});
+        new StartUI(input, new MemTracker(), System.out::println).init(new UserAction[] {action});
         assertThat(action.isCall(), is(true));
     }
     @Test
@@ -56,7 +56,7 @@ public class StartUITest {
         System.setOut(new PrintStream(out));
         StubInput input = new StubInput(new String[] {"0"});
         StubAction action = new StubAction();
-        new StartUI(input, new Tracker(), System.out::println).init(new UserAction[] {action});
+        new StartUI(input, new MemTracker(), System.out::println).init(new UserAction[] {action});
         String expect = new StringBuilder()
                 .append("Menu.")
                 .append(System.lineSeparator())

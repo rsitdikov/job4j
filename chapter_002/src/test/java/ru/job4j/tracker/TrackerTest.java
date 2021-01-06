@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
 public class TrackerTest {
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("test1");
         tracker.add(item);
         Item result = tracker.findById(item.getId());
@@ -23,7 +23,7 @@ public class TrackerTest {
 
     @Test
     public void whenFindAllThenTrackerHas10Items() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Random rm = new Random();
         for (int index = 0; index < 10; index++) {
             Item item = new Item(String.valueOf(rm.nextLong()));
@@ -34,7 +34,7 @@ public class TrackerTest {
     }
     @Test
     public void whenFindNameTestThenTrackerHas10Items() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Random rm = new Random();
         for (int index = 0; index < 10; index++) {
             Item item = new Item(String.valueOf(rm.nextLong()));
@@ -47,7 +47,7 @@ public class TrackerTest {
     }
     @Test
     public void whenAddNewItemToTrackerThenItemHasSameId() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("Test");
         tracker.add(item);
         String answer = item.getId();
@@ -56,7 +56,7 @@ public class TrackerTest {
     }
     @Test
     public void whenReplace() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item bug = new Item("Bug");
         tracker.add(bug);
         String id = bug.getId();
@@ -66,7 +66,7 @@ public class TrackerTest {
     }
     @Test
     public void whenDelete() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item bug = new Item("Bug");
         tracker.add(bug);
         String id = bug.getId();

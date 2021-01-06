@@ -5,10 +5,10 @@ import java.util.function.Consumer;
 
 public class StartUI {
     private final Input input;
-    private final Tracker tracker;
+    private final Store tracker;
     private final Consumer<String> output;
 
-    public StartUI(Input input, Tracker tracker, Consumer<String> output) {
+    public StartUI(Input input, Store tracker, Consumer<String> output) {
         this.input = input;
         this.tracker = tracker;
         this.output = output;
@@ -34,16 +34,20 @@ public class StartUI {
     public static void main(String[] args) {
         Input input = new ConsoleInput();
         Input validate = new ValidateInput(input);
-        Tracker tracker = new Tracker();
-        UserAction[] actions = {
-                new CreateAction(),
-                new FindAllAction(),
-                new ReplaceAction(),
-                new DeleteAction(),
-                new FindByIdAction(),
-                new FindByNameAction(),
-                new ExitAction()
-        };
-        new StartUI(validate, tracker, System.out::println).init(actions);
+        try (Store tracker = new SqlTracker()) {
+            tracker.init();
+            UserAction[] actions = {
+                    new CreateAction(),
+                    new FindAllAction(),
+                    new ReplaceAction(),
+                    new DeleteAction(),
+                    new FindByIdAction(),
+                    new FindByNameAction(),
+                    new ExitAction()
+            };
+            new StartUI(validate, tracker, System.out::println).init(actions);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

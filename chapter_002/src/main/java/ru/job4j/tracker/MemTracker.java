@@ -8,17 +8,22 @@ import java.util.Random;
  * @version $Id$
  * @since 0.1
  */
-public class Tracker {
+public class MemTracker implements Store {
     /**
      * Массив для хранение заявок.
      */
     private final List<Item> items = new ArrayList<>();
 
+    @Override
+    public void init() {
+
+    }
 
     /**
      * Метод реализующий добавление заявки в хранилище
      * @param item новая заявка
      */
+    @Override
     public Item add(Item item) {
         item.setId(this.generateId());
         this.items.add(item);
@@ -35,10 +40,12 @@ public class Tracker {
         return String.valueOf(rm.nextLong() + System.currentTimeMillis());
     }
 
+    @Override
     public List<Item> findAll() {
         return items;
     }
 
+    @Override
     public List<Item> findByName(String key) {
         List<Item> rsl = new ArrayList<>();
         for (Item item : items) {
@@ -49,6 +56,7 @@ public class Tracker {
         return rsl;
     }
 
+    @Override
     public Item findById(String id) {
         int index = indexOf(id);
         return index == -1 ? null : items.get(index);
@@ -64,6 +72,8 @@ public class Tracker {
         }
         return rsl;
     }
+
+    @Override
     public boolean replace(String id, Item item) {
         boolean rsl = false;
         int index = indexOf(id);
@@ -74,6 +84,8 @@ public class Tracker {
         }
         return rsl;
     }
+
+    @Override
     public boolean delete(String id) {
         boolean rsl = false;
         int index = indexOf(id);
@@ -82,5 +94,10 @@ public class Tracker {
             rsl = true;
         }
         return rsl;
+    }
+
+    @Override
+    public void close() {
+
     }
 }
