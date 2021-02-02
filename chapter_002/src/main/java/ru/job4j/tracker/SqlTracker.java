@@ -11,22 +11,29 @@ import static java.lang.Integer.*;
 public class SqlTracker implements Store {
     private Connection cn;
 
+    public SqlTracker(Connection connection) {
+        this.cn = connection;
+    }
+
+    public SqlTracker() {
+    }
+
     public void init() {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
-            Properties config = new Properties();
-            config.load(in);
-            Class.forName(config.getProperty("driver-class-name"));
-            cn = DriverManager.getConnection(
-                    config.getProperty("url"),
-                    config.getProperty("username"),
-                    config.getProperty("password")
-            );
-            PreparedStatement ps = cn.prepareStatement("CREATE TABLE IF NOT EXISTS items (id serial primary key, name varchar(255))");
-            ps.executeUpdate();
-            ps.close();
-        } catch (Exception e) {
-            throw new IllegalStateException(e);
-        }
+        Properties config = new Properties();
+        config.load(in);
+        Class.forName(config.getProperty("driver-class-name"));
+        cn = DriverManager.getConnection(
+                config.getProperty("url"),
+                config.getProperty("username"),
+                config.getProperty("password")
+        );
+        PreparedStatement ps = cn.prepareStatement("CREATE TABLE IF NOT EXISTS items (id serial primary key, name varchar(255))");
+        ps.executeUpdate();
+        ps.close();
+    } catch (Exception e) {
+        throw new IllegalStateException(e);
+    }
     }
 
     @Override
@@ -38,12 +45,13 @@ public class SqlTracker implements Store {
 
     @Override
     public Item add(Item item) {
-        try (PreparedStatement ps = cn.prepareStatement("INSERT INTO items (name) VALUES (?)")) {
+        try (PreparedStatement ps = cn.prepareStatement("INSERT INTO items (name) VALUES (?)",
+                Statement.RETURN_GENERATED_KEYS )) {
            ps.setString(1, item.getName());
            ps.executeUpdate();
            try (ResultSet keys = ps.getGeneratedKeys()) {
                if (keys.next()) {
-                item.setId(keys.getString(1));
+                item.setId(String.valueOf(keys.getInt(1)));
                }
            }
         } catch (SQLException e) {
