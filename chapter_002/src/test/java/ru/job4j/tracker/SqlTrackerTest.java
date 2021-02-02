@@ -40,7 +40,7 @@ public class SqlTrackerTest {
             tracker.add(item);
             Item result = tracker.findById(item.getId());
             assertEquals(result, item);
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -108,7 +108,7 @@ public class SqlTrackerTest {
     }
 
     @Test
-    public void WhenItemDeletedSizeShouldDecrease() {
+    public void whenItemDeletedSizeShouldDecrease() {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
             String id = tracker.add(new Item("name")).getId();
             int expected = tracker.findAll().size() - 1;
@@ -135,7 +135,7 @@ public class SqlTrackerTest {
     }
 
     @Test
-    public void whenFindByNameQuantityMustMatch(){
+    public void whenFindByNameQuantityMustMatch() {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
             List<Item> items = new ArrayList<>();
             for (int index = 0; index < 10; index++) {
