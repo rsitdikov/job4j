@@ -1,8 +1,7 @@
 package ru.job4j.array;
 
 import org.junit.Test;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertArrayEquals;
 
 public class SquareTest {
     @Test
@@ -11,7 +10,7 @@ public class SquareTest {
         Square square = new Square();
         int[] rst = square.calculate(bound);
         int[] expect = new int[] {1, 4, 9};
-        assertThat(rst, is(expect));
+        assertArrayEquals(rst, expect);
     }
     @Test
     public void whenBound5Then1491625() {
@@ -19,7 +18,7 @@ public class SquareTest {
         Square square = new Square();
         int[] rst = square.calculate(bound);
         int[] expect = new int[] {1, 4, 9, 16, 25};
-        assertThat(rst, is(expect));
+        assertArrayEquals(rst, expect);
     }
     @Test
     public void whenBound3Then149162536496481100() {
@@ -27,6 +26,6 @@ public class SquareTest {
         Square square = new Square();
         int[] rst = square.calculate(bound);
         int[] expect = new int[] {1, 4, 9, 16, 25, 36, 49, 64, 81, 100};
-        assertThat(rst, is(expect));
+        assertArrayEquals(rst, expect);
     }
 }

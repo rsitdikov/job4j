@@ -5,8 +5,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class FindByNameActionTest {
 
@@ -27,7 +26,7 @@ public class FindByNameActionTest {
                 .append(item.getName())
                 .append(System.lineSeparator())
                 .toString();
-        assertThat(new String(out.toByteArray()), is(expect));
+        assertEquals(new String(out.toByteArray()), expect);
         System.setOut(def);
     }
 }

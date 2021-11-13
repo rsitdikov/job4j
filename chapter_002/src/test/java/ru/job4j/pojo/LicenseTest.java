@@ -4,8 +4,7 @@ import org.junit.Test;
 
 import java.util.Date;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class LicenseTest {
 
@@ -15,7 +14,7 @@ public class LicenseTest {
         first.setCode("audio");
         License second = new License();
         second.setCode("audio");
-        assertThat(first, is(second));
+        assertEquals(first, second);
     }
 
     @Test
@@ -25,7 +24,7 @@ public class LicenseTest {
         first.setCreated(date);
         License second = new License();
         second.setCreated(date);
-        assertThat(first, is(second));
+        assertEquals(first, second);
     }
 
     @Test
@@ -41,6 +40,6 @@ public class LicenseTest {
         second.setCode("Code");
         second.setModel("Model");
         second.setOwner("Owner");
-        assertThat(first, is(second));
+        assertEquals(first, second);
     }
 }

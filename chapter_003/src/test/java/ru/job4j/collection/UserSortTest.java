@@ -6,9 +6,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-import static org.hamcrest.Matchers.lessThan;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class UserSortTest {
     @Test
@@ -20,7 +19,7 @@ public class UserSortTest {
         List<User> users = Arrays.asList(ivan, petr, roman, anatoly);
         List<User> expect = Arrays.asList(anatoly, ivan, petr, roman);
         users.sort(new UserSort.UserSortByName());
-        assertThat(users, is(expect));
+        assertEquals(users, expect);
     }
 
     @Test
@@ -32,7 +31,7 @@ public class UserSortTest {
         List<User> users = Arrays.asList(ivan, petr, roman, anatoly);
         List<User> expect = Arrays.asList(roman, petr, ivan, anatoly);
         users.sort(new UserSort.UserSortByNameReverse());
-        assertThat(users, is(expect));
+        assertEquals(users, expect);
     }
 
     @Test
@@ -44,7 +43,7 @@ public class UserSortTest {
         List<User> users = Arrays.asList(ivan, petr, roman, anatoly);
         List<User> expect = Arrays.asList(petr, ivan, roman, anatoly);
         users.sort(new UserSort.UserSortByAge());
-        assertThat(users, is(expect));
+        assertEquals(users, expect);
     }
 
     @Test
@@ -56,7 +55,7 @@ public class UserSortTest {
         List<User> users = Arrays.asList(ivan, petr, roman, anatoly);
         List<User> expect = Arrays.asList(anatoly, roman, ivan, petr);
         users.sort(new UserSort.UserSortAgeReverse());
-        assertThat(users, is(expect));
+        assertEquals(users, expect);
     }
 
     @Test
@@ -66,7 +65,7 @@ public class UserSortTest {
                 new User("A", 1),
                 new User("B", 0)
         );
-        assertThat(rsl, lessThan(0));
+        assertTrue(rsl < 0);
     }
 
     @Test
@@ -76,7 +75,7 @@ public class UserSortTest {
                 new User("A", 1),
                 new User("B", 0)
         );
-        assertThat(rsl, lessThan(0));
+        assertTrue(rsl < 0);
     }
 
     @Test
@@ -86,7 +85,7 @@ public class UserSortTest {
                 new User("A", 1),
                 new User("B", 0)
         );
-        assertThat(rsl, is(1));
+        assertEquals(rsl, 1);
     }
 
     @Test
@@ -96,6 +95,6 @@ public class UserSortTest {
                 new User("A", 1),
                 new User("B", 0)
         );
-        assertThat(rsl, is(1));
+        assertEquals(rsl, 1);
     }
 }

@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class SchoolTest {
     List<Student> students = List.of(
@@ -30,7 +29,7 @@ public class SchoolTest {
                 new Student("Vasil'ev", 36)
         );
         List<Student> result = new School().collect(students, predicate);
-        assertThat(result, is(expected));
+        assertEquals(result, expected);
     }
     @Test
     public void whenScopeGreaterOrEqual50AndLess70ThenClassB() {
@@ -40,7 +39,7 @@ public class SchoolTest {
                 new Student("Makarov", 65)
         );
         List<Student> result = new School().collect(students, predicate);
-        assertThat(result, is(expected));
+        assertEquals(result, expected);
     }
     @Test
     public void whenScopeGreaterOrEqual70AndLessOrEqual100ThenClassA() {
@@ -50,7 +49,7 @@ public class SchoolTest {
                 new Student("Savel'ev", 87)
         );
         List<Student> result = new School().collect(students, predicate);
-        assertThat(result, is(expected));
+        assertEquals(result, expected);
     }
     @Test
     public void whenConvertListThenResultMap() {
@@ -64,7 +63,7 @@ public class SchoolTest {
                 "Savel'ev", new Student("Savel'ev", 87)
         );
         Map<String, Student> result = new School().convertListToMap(students);
-        assertThat(result, is(expected));
+        assertEquals(result, expected);
     }
 
     @Test
@@ -94,6 +93,6 @@ public class SchoolTest {
                 new Student("Sidorov", 43)
 
         );
-        assertThat(new School().levelOf(students, 35), is(expected));
+        assertEquals(new School().levelOf(students, 35), expected);
     }
 }

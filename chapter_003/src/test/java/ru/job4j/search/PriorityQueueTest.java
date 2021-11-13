@@ -2,8 +2,7 @@ package ru.job4j.search;
 
 import org.junit.Test;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class PriorityQueueTest {
     @Test
@@ -13,6 +12,6 @@ public class PriorityQueueTest {
         queue.put(new Task("urgent", 1));
         queue.put(new Task("middle", 3));
         var result = queue.take();
-        assertThat(result.getDesc(), is("urgent"));
+        assertEquals(result.getDesc(), "urgent");
     }
 }

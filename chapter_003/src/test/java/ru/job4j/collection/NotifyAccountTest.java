@@ -5,8 +5,7 @@ import org.junit.Test;
 import java.util.HashSet;
 import java.util.List;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class NotifyAccountTest {
 
@@ -22,7 +21,7 @@ public class NotifyAccountTest {
                         new Account("142", "Petr Arsentev", "000001")
                 )
         );
-        assertThat(NotifyAccount.sent(accounts), is(expect));
+        assertEquals(NotifyAccount.sent(accounts), expect);
     }
     @Test
     public void whenDuplicateDeleted() {
@@ -35,6 +34,6 @@ public class NotifyAccountTest {
                     new Account("123", "Petr Arsentev", "eDer3432f")
                 )
         );
-        assertThat(NotifyAccount.sent(accounts), is(expect));
+        assertEquals(NotifyAccount.sent(accounts), expect);
     }
 }

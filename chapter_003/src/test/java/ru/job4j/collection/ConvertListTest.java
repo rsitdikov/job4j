@@ -4,8 +4,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class ConvertListTest {
     @Test
@@ -15,6 +14,6 @@ public class ConvertListTest {
                 new int[] {2, 3}
         );
         List<Integer> expect = List.of(1, 2, 3);
-        assertThat(ConvertList.convert(in), is(expect));
+        assertEquals(ConvertList.convert(in), expect);
     }
 }

@@ -6,8 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 
 public class SortIncreaseByItemNameTest {
@@ -23,6 +22,6 @@ public class SortIncreaseByItemNameTest {
         List<Item> items = Arrays.asList(first, second, third);
         List<Item> expected = Arrays.asList(second, third, first);
         Collections.sort(items, new SortIncreaseByItemName());
-        assertThat(expected, is(items));
+        assertEquals(expected, items);
     }
 }

@@ -4,8 +4,7 @@ import org.junit.Test;
 
 import java.util.*;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 
 public class GroupTest {
@@ -20,10 +19,10 @@ public class GroupTest {
 
         var result = Group.sections(input);
 
-        assertThat(result.keySet(), is(Set.of("atletics", "chess", "hockey", "judo")));
-        assertThat(result.get("atletics"), is(Set.of("Ivanov")));
-        assertThat(result.get("chess"), is(Set.of("Ivanov", "Petrov")));
-        assertThat(result.get("hockey"), is(Set.of("Petrov", "Sidorov")));
-        assertThat(result.get("judo"), is(Set.of("Ivanov", "Sidorov")));
+        assertEquals(result.keySet(), Set.of("atletics", "chess", "hockey", "judo"));
+        assertEquals(result.get("atletics"), Set.of("Ivanov"));
+        assertEquals(result.get("chess"), Set.of("Ivanov", "Petrov"));
+        assertEquals(result.get("hockey"), Set.of("Petrov", "Sidorov"));
+        assertEquals(result.get("judo"), Set.of("Ivanov", "Sidorov"));
     }
 }

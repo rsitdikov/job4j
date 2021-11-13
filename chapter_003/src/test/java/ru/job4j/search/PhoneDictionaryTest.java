@@ -2,8 +2,7 @@ package ru.job4j.search;
 
 import org.junit.Test;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class PhoneDictionaryTest {
     @Test
@@ -13,7 +12,7 @@ public class PhoneDictionaryTest {
                 new Person("Ivan", "Sidorov", "1234567", "Moscow")
         );
         var persons = phones.find("Ivan");
-        assertThat(persons.get(0).getSurname(), is("Sidorov"));
+        assertEquals(persons.get(0).getSurname(), "Sidorov");
     }
 
     @Test
@@ -23,7 +22,7 @@ public class PhoneDictionaryTest {
                 new Person("Ivan", "Sidorov", "1234567", "Moscow")
         );
         var persons = phones.find("Sidorov");
-        assertThat(persons.get(0).getName(), is("Ivan"));
+        assertEquals(persons.get(0).getName(), "Ivan");
     }
 
     @Test
@@ -33,7 +32,7 @@ public class PhoneDictionaryTest {
                 new Person("Ivan", "Sidorov", "1234567", "Moscow")
         );
         var persons = phones.find("1234567");
-        assertThat(persons.get(0).getSurname(), is("Sidorov"));
+        assertEquals(persons.get(0).getSurname(), "Sidorov");
     }
 
     @Test
@@ -43,6 +42,6 @@ public class PhoneDictionaryTest {
                 new Person("Ivan", "Sidorov", "1234567", "Moscow")
         );
         var persons = phones.find("Moscow");
-        assertThat(persons.get(0).getSurname(), is("Sidorov"));
+        assertEquals(persons.get(0).getSurname(), "Sidorov");
     }
 }

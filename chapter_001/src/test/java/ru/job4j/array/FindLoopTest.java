@@ -1,8 +1,7 @@
 package ru.job4j.array;
 
 import org.junit.Test;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class FindLoopTest {
 
@@ -13,7 +12,7 @@ public class FindLoopTest {
         int value = 1;
         int result = find.indexOf(input, value);
         int expect = 0;
-        assertThat(result, is(expect));
+        assertEquals(result, expect);
     }
     @Test
     public void whenArrayHas10Then9() {
@@ -22,7 +21,7 @@ public class FindLoopTest {
         int value = 10;
         int result = find.indexOf(input, value);
         int expect = 9;
-        assertThat(result, is(expect));
+        assertEquals(result, expect);
     }
     @Test
     public void whenArrayNotHas11() {
@@ -31,7 +30,7 @@ public class FindLoopTest {
         int value = 11;
         int result = find.indexOf(input, value);
         int expect = -1;
-        assertThat(result, is(expect));
+        assertEquals(result, expect);
     }
     @Test
     public void whenFind2() {
@@ -41,7 +40,7 @@ public class FindLoopTest {
         int finish = 4;
         int result = FindLoop.indexOf(input, value, start, finish);
         int expect = 2;
-        assertThat(result, is(expect));
+        assertEquals(result, expect);
     }
     @Test
     public void whenNoFind() {
@@ -51,7 +50,7 @@ public class FindLoopTest {
         int finish = 4;
         int result = FindLoop.indexOf(input, value, start, finish);
         int expect = -1;
-        assertThat(result, is(expect));
+        assertEquals(result, expect);
     }
 }
 

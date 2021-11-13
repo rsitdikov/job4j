@@ -3,8 +3,7 @@ package ru.job4j.tracker;
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
 
 public class ValidateInputTest {
 
@@ -17,9 +16,9 @@ public class ValidateInputTest {
                 new StubInput(new String[] {"one", "1"})
         );
         input.askInt("Enter");
-        assertThat(
+        assertEquals(
                 mem.toString(),
-                is(String.format("Please enter validate data again.%n"))
+                String.format("Please enter validate data again.%n")
         );
         System.setOut(out);
     }
@@ -34,9 +33,9 @@ public class ValidateInputTest {
                 new StubInput(new String[] {select, "0"})
         );
         input.askInt("Enter", max);
-        assertThat(
+        assertEquals(
                 mem.toString(),
-                is(String.format("Please select key from menu.%n"))
+                String.format("Please select key from menu.%n")
         );
         System.setOut(out);
     }

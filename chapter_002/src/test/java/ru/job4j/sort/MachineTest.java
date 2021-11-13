@@ -2,8 +2,7 @@ package ru.job4j.sort;
 
 import org.junit.Test;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertArrayEquals;
 
 public class MachineTest {
     @Test
@@ -11,7 +10,7 @@ public class MachineTest {
         Machine machine = new Machine();
         int[] expected = {};
         int[] rsl = machine.change(100, 100);
-        assertThat(rsl, is(expected));
+        assertArrayEquals(rsl, expected);
     }
 
     @Test
@@ -19,6 +18,6 @@ public class MachineTest {
         Machine machine = new Machine();
         int[] expected = {10, 5};
         int[] rsl = machine.change(50, 35);
-        assertThat(rsl, is(expected));
+        assertArrayEquals(rsl, expected);
     }
 }

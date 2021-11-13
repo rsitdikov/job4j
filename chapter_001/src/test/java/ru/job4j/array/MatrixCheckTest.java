@@ -1,8 +1,7 @@
 package ru.job4j.array;
 
 import org.junit.Test;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 public class MatrixCheckTest {
 
@@ -14,7 +13,7 @@ public class MatrixCheckTest {
                 {' ', ' ', ' '},
         };
         boolean result = MatrixCheck.monoHorizontal(input, 1);
-        assertThat(result, is(true));
+        assertTrue(result);
     }
     @Test
     public void whenHasMonoVertical() {
@@ -24,7 +23,7 @@ public class MatrixCheckTest {
                 {' ', ' ', 'X'},
         };
         boolean result = MatrixCheck.monoVertical(input, 2);
-        assertThat(result, is(true));
+        assertTrue(result);
     }
     @Test
     public void whenDiagonal() {
@@ -35,7 +34,7 @@ public class MatrixCheckTest {
         };
         char[] result = MatrixCheck.extractDiagonal(input);
         char[] expect = {'X', 'X', 'X'};
-        assertThat(result, is(expect));
+        assertArrayEquals(result, expect);
     }
     @Test
     public void whenDataMonoByTrueThenTrue() {
@@ -47,7 +46,7 @@ public class MatrixCheckTest {
                 {' ', ' ', 'X', ' ', ' '},
         };
         boolean result = MatrixCheck.isWin(input);
-        assertThat(result, is(true));
+        assertTrue(result);
     }
 
     @Test
@@ -60,7 +59,7 @@ public class MatrixCheckTest {
                 {' ', ' ', 'X', ' ', ' '},
         };
         boolean result = MatrixCheck.isWin(input);
-        assertThat(result, is(false));
+        assertFalse(result);
     }
 
     @Test
@@ -73,6 +72,6 @@ public class MatrixCheckTest {
                 {' ', ' ', 'X', ' ', ' '},
         };
         boolean result = MatrixCheck.isWin(input);
-        assertThat(result, is(true));
+        assertTrue(result);
     }
 }

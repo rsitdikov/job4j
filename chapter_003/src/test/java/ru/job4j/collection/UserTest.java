@@ -6,9 +6,8 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class UserTest {
     @Test
@@ -20,8 +19,8 @@ public class UserTest {
                 )
         );
         Iterator<User> it = users.iterator();
-        assertThat(it.next(), is(new User("Ivan", 31)));
-        assertThat(it.next(), is(new User("Petr", 32)));
+        assertEquals(it.next(), new User("Ivan", 31));
+        assertEquals(it.next(), new User("Petr", 32));
     }
 
     @Test
@@ -30,6 +29,6 @@ public class UserTest {
                 .compareTo(
                         new User("Ivan", 31)
                 );
-        assertThat(rsl, greaterThan(0));
+        assertTrue(rsl > 0);
     }
 }

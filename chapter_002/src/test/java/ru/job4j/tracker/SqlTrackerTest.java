@@ -10,10 +10,8 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Random;
 
-import static junit.framework.TestCase.assertEquals;
-import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
 
 public class SqlTrackerTest {
 
@@ -26,7 +24,6 @@ public class SqlTrackerTest {
                     config.getProperty("url"),
                     config.getProperty("username"),
                     config.getProperty("password")
-
             );
         } catch (Exception e) {
             throw new IllegalStateException(e);
@@ -62,7 +59,7 @@ public class SqlTrackerTest {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
             int expected = tracker.findAll().size() + 1;
             tracker.add(new Item("name"));
-            assertThat(tracker.findAll().size(), is(expected));
+            assertEquals(tracker.findAll().size(), expected);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -71,11 +68,14 @@ public class SqlTrackerTest {
     @Test
     public void whenFindAllThenTrackerHas10Items() {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
+            int startItems = tracker.findAll().size();
             Random rm = new Random();
             for (int index = 0; index < 10; index++) {
                 tracker.add(new Item(String.valueOf(rm.nextLong())));
             }
-            assertThat(tracker.findAll().size(), is(10));
+            int expected = 10;
+            int actual = tracker.findAll().size() - startItems;
+            assertEquals(expected, actual);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -101,7 +101,7 @@ public class SqlTrackerTest {
             int expected = tracker.findAll().size();
             tracker.replace(id, new Item("newName"));
             int result = tracker.findAll().size();
-            assertThat(result, is(expected));
+            assertEquals(result, expected);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -114,7 +114,7 @@ public class SqlTrackerTest {
             int expected = tracker.findAll().size() - 1;
             tracker.delete(id);
             int result = tracker.findAll().size();
-            assertThat(result, is(expected));
+            assertEquals(result, expected);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -141,7 +141,7 @@ public class SqlTrackerTest {
             for (int index = 0; index < 10; index++) {
                     items.add(tracker.add(new Item("name")));
             }
-            assertThat(tracker.findByName("name").size(), is(items.size()));
+            assertEquals(tracker.findByName("name").size(), items.size());
         } catch (Exception e) {
             e.printStackTrace();
         }

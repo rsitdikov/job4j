@@ -18,8 +18,8 @@ public class FreezeStr {
         }
         return rsl;
     }
-    public static void incMapValue(Map map, char key) {
-        int value = (int) map.getOrDefault(key, 0);
+    public static void incMapValue(Map<Character, Integer> map, char key) {
+        int value = map.getOrDefault(key, 0);
         map.put(key, ++value);
     }
 }

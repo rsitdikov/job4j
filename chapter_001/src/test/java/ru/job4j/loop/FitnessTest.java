@@ -2,7 +2,6 @@ package ru.job4j.loop;
 
 import org.junit.Test;
 
-import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 public class FitnessTest {
@@ -10,26 +9,26 @@ public class FitnessTest {
     public void whenIvanGreatNik() {
         Fitness fit = new Fitness();
         int month = fit.calc(95, 90);
-        assertThat(month, is(0));
+        assertEquals(month, 0);
     }
 
     @Test
     public void whenIvanLessByOneNik() {
         Fitness fit = new Fitness();
         int month = fit.calc(90, 95);
-        assertThat(month, is(1));
+        assertEquals(month, 1);
     }
 
     @Test
     public void whenIvanLessByFewNik() {
         Fitness fit = new Fitness();
         int month = fit.calc(50, 90);
-        assertThat(month, is(2));
+        assertEquals(month, 2);
     }
     @Test
     public void whenIvanLessByFourNik() {
         Fitness fit = new Fitness();
         int month = fit.calc(25, 90);
-        assertThat(month, is(4));
+        assertEquals(month, 4);
     }
 }

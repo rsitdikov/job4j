@@ -5,9 +5,8 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNull.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class StartUITest {
     @Test
@@ -18,7 +17,7 @@ public class StartUITest {
         new  CreateAction().execute(input, tracker, System.out::println);
         Item created = tracker.findAll().get(0);
         Item expected = new Item("Fix PC");
-        assertThat(created.getName(), is(expected.getName()));
+        assertEquals(created.getName(), expected.getName());
     }
     @Test
     public void whenReplaceItem() {
@@ -28,7 +27,7 @@ public class StartUITest {
         String[] answers = {item.getId(), "replaced item"};
         new ReplaceAction().execute(new StubInput(answers), tracker, System.out::println);
         Item replaced = tracker.findById(item.getId());
-        assertThat(replaced.getName(), is("replaced item"));
+        assertEquals(replaced.getName(), "replaced item");
     }
     @Test
     public void whenDeleteItem() {
@@ -38,7 +37,7 @@ public class StartUITest {
         String[] answers = {item.getId()};
         new DeleteAction().execute(new StubInput(answers), tracker, System.out::println);
         Item deleted = tracker.findById(answers[0]);
-        assertThat(deleted, is(nullValue()));
+        assertEquals(deleted, null);
     }
     @Test
     public void whenExit() {
@@ -47,7 +46,7 @@ public class StartUITest {
         );
         StubAction action = new StubAction();
         new StartUI(input, new MemTracker(), System.out::println).init(new UserAction[] {action});
-        assertThat(action.isCall(), is(true));
+        assertTrue(action.isCall());
     }
     @Test
     public void whenPrtMenu() {
@@ -64,8 +63,8 @@ public class StartUITest {
                 .append("0. Stub action")
                 .append(System.lineSeparator())
                 .toString();
-        assertThat(new String(out.toByteArray()),
-                    is(expect));
+        assertEquals(new String(out.toByteArray()),
+                    expect);
         System.setOut(stdout);
     }
 }

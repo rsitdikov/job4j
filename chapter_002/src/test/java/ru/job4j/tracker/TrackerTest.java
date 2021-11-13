@@ -5,10 +5,7 @@ import org.junit.Test;
 import java.util.List;
 import java.util.Random;
 
-import static org.hamcrest.Matchers.arrayWithSize;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.core.IsNull.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 
 public class TrackerTest {
@@ -18,7 +15,7 @@ public class TrackerTest {
         Item item = new Item("test1");
         tracker.add(item);
         Item result = tracker.findById(item.getId());
-        assertThat(result.getName(), is(item.getName()));
+        assertEquals(result.getName(), item.getName());
     }
 
     @Test
@@ -30,7 +27,7 @@ public class TrackerTest {
             tracker.add(item);
         }
         List<Item> result = tracker.findAll();
-        assertThat(result.toArray(), arrayWithSize(10));
+        assertEquals(result.size(), 10);
     }
     @Test
     public void whenFindNameTestThenTrackerHas10Items() {
@@ -43,7 +40,7 @@ public class TrackerTest {
             tracker.add(item);
         }
         List<Item> result = tracker.findByName("Test");
-        assertThat(result.toArray(), arrayWithSize(10));
+        assertEquals(result.size(), 10);
     }
     @Test
     public void whenAddNewItemToTrackerThenItemHasSameId() {
@@ -52,7 +49,7 @@ public class TrackerTest {
         tracker.add(item);
         String answer = item.getId();
         Item result = tracker.findById(answer);
-        assertThat(result, is(item));
+        assertEquals(result, item);
     }
     @Test
     public void whenReplace() {
@@ -62,7 +59,7 @@ public class TrackerTest {
         String id = bug.getId();
         Item bugWithDesc = new Item("Bug with description");
         tracker.replace(id, bugWithDesc);
-        assertThat(tracker.findById(id).getName(), is("Bug with description"));
+        assertEquals(tracker.findById(id).getName(), "Bug with description");
     }
     @Test
     public void whenDelete() {
@@ -71,6 +68,6 @@ public class TrackerTest {
         tracker.add(bug);
         String id = bug.getId();
         tracker.delete(id);
-        assertThat(tracker.findById(id), is(nullValue()));
+        assertEquals(tracker.findById(id), null);
     }
 }

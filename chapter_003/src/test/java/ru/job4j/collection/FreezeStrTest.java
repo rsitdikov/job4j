@@ -2,23 +2,22 @@ package ru.job4j.collection;
 
 import org.junit.Test;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 public class FreezeStrTest {
 
     @Test
     public void whenEq() {
-        assertThat(FreezeStr.eq("Hello", "Hlloe"), is(true));
+        assertTrue(FreezeStr.eq("Hello", "Hlloe"));
     }
 
     @Test
     public void whenNotEq() {
-        assertThat(FreezeStr.eq("Hello", "Halle"), is(false));
+        assertFalse(FreezeStr.eq("Hello", "Halle"));
     }
 
     @Test
     public void whenNotMultiEq() {
-        assertThat(FreezeStr.eq("heloo", "hello"), is(false));
+        assertFalse(FreezeStr.eq("heloo", "hello"));
     }
 }

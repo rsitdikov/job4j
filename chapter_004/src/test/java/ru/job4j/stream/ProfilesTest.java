@@ -4,8 +4,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class ProfilesTest {
     @Test
@@ -21,7 +20,7 @@ public class ProfilesTest {
                 new Profile(third),
                 new Profile(four));
         List<Address> result = new Profiles().collect(clients);
-        assertThat(result, is(expected));
+        assertEquals(result, expected);
     }
     @Test
     public void whenProfilesAreRepeatedThenResultIsUnique() {
@@ -40,6 +39,6 @@ public class ProfilesTest {
                 new Profile(five),
                 new Profile(six));
         List<Address> result = new Profiles().collect(clients);
-        assertThat(result, is(expected));
+        assertEquals(result, expected);
     }
 }

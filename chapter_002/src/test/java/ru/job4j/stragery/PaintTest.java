@@ -5,8 +5,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.StringJoiner;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class PaintTest {
     private final PrintStream stdout = System.out;
@@ -27,9 +26,9 @@ public class PaintTest {
     @Test
     public void whenDrawSquare() {
         new Paint().draw(new Square());
-        assertThat(
+        assertEquals(
                 new String(out.toByteArray()),
-                is(
+                (
                         new StringJoiner(System.lineSeparator())
                                 .add("++++")
                                 .add("+  +")
@@ -43,9 +42,9 @@ public class PaintTest {
     @Test
     public void whenDrawTriangle() {
         new Paint().draw(new Triangle());
-        assertThat(
+        assertEquals(
                 new String(out.toByteArray()),
-                is(
+                (
                         new StringJoiner(System.lineSeparator())
                                 .add("   +   ")
                                 .add("  + +  ")

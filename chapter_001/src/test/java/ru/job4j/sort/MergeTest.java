@@ -3,8 +3,7 @@ package ru.job4j.sort;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertArrayEquals;
 
 @Ignore
 public class MergeTest {
@@ -16,7 +15,7 @@ public class MergeTest {
                 new int[0],
                 new int[0]
         );
-        assertThat(result, is(expect));
+        assertArrayEquals(result, expect);
     }
 
     @Test
@@ -27,7 +26,7 @@ public class MergeTest {
                 new int[] {1, 2},
                 new int[] {3, 4}
         );
-        assertThat(result, is(expect));
+        assertArrayEquals(result, expect);
     }
 
     @Test
@@ -38,7 +37,7 @@ public class MergeTest {
                 new int[] {1, 2, 3},
                 new int[] {3, 4}
         );
-        assertThat(result, is(expect));
+        assertArrayEquals(result, expect);
     }
 
     @Test
@@ -49,7 +48,7 @@ public class MergeTest {
                 new int[] {1, 2},
                 new int[] {3, 4, 4}
         );
-        assertThat(result, is(expect));
+        assertArrayEquals(result, expect);
     }
 
     @Test
@@ -60,6 +59,6 @@ public class MergeTest {
                 new int[] {},
                 new int[] {1, 2, 3, 4}
         );
-        assertThat(result, is(expect));
+        assertArrayEquals(result, expect);
     }
 }

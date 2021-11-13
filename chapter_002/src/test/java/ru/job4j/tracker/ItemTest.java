@@ -6,8 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 
 public class ItemTest {
@@ -23,7 +22,7 @@ public class ItemTest {
         List<Item> items = Arrays.asList(first, second, third);
         List<Item> expected = Arrays.asList(third, second, first);
         Collections.sort(items);
-        assertThat(expected, is(items));
+        assertEquals(expected, items);
     }
     @Test
     public void whenTheOrderFirstSecondThird() {
@@ -36,6 +35,6 @@ public class ItemTest {
         List<Item> items = Arrays.asList(first, second, third);
         List<Item> expected = Arrays.asList(first, second, third);
         Collections.sort(items, Collections.reverseOrder());
-        assertThat(expected, is(items));
+        assertEquals(expected, items);
     }
 }
